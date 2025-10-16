@@ -12,25 +12,25 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <selenium.version>4.23.0</selenium.version>
-        <testng.version>7.10.2</testng.version>
-        <allure.testng.version>2.24.0</allure.testng.version>
+        <testng.version>7.11.0</testng.version>
+        <!-- Allure Java bağlayıcısı sürümü -->
+        <allure.testng.version>2.29.0</allure.testng.version>
         <webdrivermanager.version>5.9.2</webdrivermanager.version>
         <slf4j.version>2.0.13</slf4j.version>
+
         <browser>chrome</browser>
         <headless>false</headless>
-
     </properties>
 
     <dependencies>
-        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -38,14 +38,12 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
 
-        <!-- Allure (TestNG) -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -53,7 +51,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- SLF4J simple logger -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -71,34 +68,36 @@
             <version>7.11.0</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.27.0</version>
-            <scope>compile</scope>
-        </dependency>
+
+
     </dependencies>
 
     <build>
         <plugins>
-            <!-- TestNG çalıştırma -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
+                    <!-- testng.xml yolu -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+
                     <includes>
                         <include>**/*Tests.java</include>
                         <include>**/*Test.java</include>
                     </includes>
+
                     <systemPropertyVariables>
                         <browser>${browser}</browser>
                         <headless>${headless}</headless>
+                        <!-- Allure sonuçları target/allure-results içine -->
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
 
-            <!-- Java 21 derleme -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -107,6 +106,13 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <!-- varsayılan config yeterli -->
             </plugin>
         </plugins>
     </build>

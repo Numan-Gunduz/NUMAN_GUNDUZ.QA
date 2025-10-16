@@ -6,5 +6,7 @@ public record Config(
         boolean headless,
         int implicitWait,
         int explicitWait,
-        int pageLoadTimeout
+        int pageLoadTimeout,
+        int debugPauseSec              // <-- eklendi
+
 ) { }

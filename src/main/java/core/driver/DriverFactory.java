@@ -13,6 +13,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class DriverFactory {
     private static final ThreadLocal<WebDriver> TL = new ThreadLocal<>();
@@ -37,6 +39,12 @@ public final class DriverFactory {
             default -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions opts = new ChromeOptions();
+                // DriverFactory.java içinde ChromeOptions oluşturduğun yerde:
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("profile.default_content_setting_values.notifications", 2); // 1=allow, 2=block
+                opts.setExperimentalOption("prefs", prefs);
+                opts.addArguments("--disable-notifications");
+
                 opts.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 if (headless) opts.addArguments("--headless=new", "--disable-gpu");
                 opts.addArguments("--start-maximized");

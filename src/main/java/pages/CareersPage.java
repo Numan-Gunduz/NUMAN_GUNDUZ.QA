@@ -12,6 +12,9 @@ public class CareersPage extends BasePage {
     private static final By LOCATIONS_HEADING = By.cssSelector("h3.category-title-media.ml-0");
     private static final By TEAMS_SEE_ALL_BTN = By.xpath("//a[contains(normalize-space(.),'See all teams')]");
     private static final By LIFE_AT_INSIDER_HEADING = By.cssSelector("h2.elementor-heading-title.elementor-size-default");
+    private static final By FIND_YOUR_DREAM_JOB =
+            By.cssSelector("a[href*='/open-positions']"); // metin/stil değişse bile href stabil
+
 
     public CareersPage(WebDriver driver) { super(driver); }
 
@@ -67,4 +70,5 @@ public class CareersPage extends BasePage {
             return false;
         }
     }
+
 }

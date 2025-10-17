@@ -1,5 +1,7 @@
 package tests;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CareersPage;
@@ -7,6 +9,7 @@ import pages.HomePage;
 import pages.TopNavBar;
 
 public class CareersTests extends BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(CareersTests.class);
 
     @Test(description = "Home'da Company>Careers, sonra Careers sayfasında tekrar Company>Careers ve 3 blok doğrulaması")
     public void should_open_careers_from_home_then_verify_blocks() {

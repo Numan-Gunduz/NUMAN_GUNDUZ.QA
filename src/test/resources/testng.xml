@@ -1,13 +1,17 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Insider UI Automation Suite" verbose="1" parallel="false">
+<suite name="Insider UI Automation Suite" verbose="1" parallel="none">
     <listeners>
         <listener class-name="core.listeners.TestListener"/>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
     <test name="All UI Tests">
-        <packages>
-            <package name="tests"/>
-        </packages>
+        <classes>
+            <!-- Önce HomePageTests -->
+            <class name="tests.HomePageTests"/>
+            <!-- Sonra CareersTests -->
+            <class name="tests.CareersTests"/>
+            <!-- İstersen diğer testleri de sıralayabilirsin -->
+            <class name="tests.QaJobsTests"/>
+        </classes>
     </test>
 </suite>

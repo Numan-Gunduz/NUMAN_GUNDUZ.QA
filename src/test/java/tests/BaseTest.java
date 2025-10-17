@@ -21,13 +21,25 @@ public abstract class BaseTest {
 
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        log = LoggerFactory.getLogger(this.getClass()); // <-- EK
-
+    public void setup() {
         cfg = ConfigLoader.get();
         DriverFactory.start();
         driver = DriverFactory.get();
+
+        // 🔹 Tüm çerezleri temizle
+        driver.manage().deleteAllCookies();
+
+        // 🔹 Sayfayı yenile (bazı tarayıcılar çerez temizledikten sonra bunu ister)
+        driver.navigate().refresh();
+
+        // 🔹 Stabilite için kısa bekleme
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
+
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {

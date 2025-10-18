@@ -10,7 +10,6 @@ public class HomePageTests extends BaseTest {
         boolean ok = new HomePage(driver)
                 .open()
                 .isOpen();
-
         Assert.assertTrue(ok, "Ana sayfa açılmadı veya title beklenen formatta değil.");
     }
 }

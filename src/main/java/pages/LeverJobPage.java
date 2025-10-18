@@ -20,9 +20,9 @@ public class LeverJobPage extends BasePage {
         boolean btnOk = waitFor().until(ExpectedConditions.visibilityOfElementLocated(APPLY_BTN)).isDisplayed();
 
         if (urlOk && btnOk)
-            LOG.info("✅ Lever Application sayfası başarıyla açıldı: {}", driver.getCurrentUrl());
+            LOG.info("Lever Application sayfası başarıyla açıldı: {}", driver.getCurrentUrl());
         else
-            LOG.warn("⚠️ Lever sayfası doğrulanamadı. URL: {}", driver.getCurrentUrl());
+            LOG.warn("Lever sayfası doğrulanamadı. URL: {}", driver.getCurrentUrl());
 
         return urlOk && btnOk;
     }

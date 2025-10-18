@@ -15,15 +15,12 @@ public class CareersTests extends BaseTest {
     public void should_open_careers_from_home_then_verify_blocks() {
         log.info("Ana sayfa açılıyor...");
         new HomePage(driver).open();
-
         log.info("Home'dan Company>Careers adımı...");
         CareersPage careers = new TopNavBar(driver).goToCareers();
         Assert.assertTrue(careers.isOpen(), "Careers sayfası Home'dan açılamadı.");
-
         log.info("Careers sayfasında tekrar Company>Careers adımı (dropdown davranışını doğrula)...");
         careers = new TopNavBar(driver).goToCareers();
         Assert.assertTrue(careers.isOpen(), "Careers sayfasında Company>Careers tekrar açılmadı.");
-
         log.info("Blok doğrulamaları başlıyor...");
         Assert.assertTrue(careers.isLocationsVisible(), "'Our Locations' bloğu görünür değil.");
         Assert.assertTrue(careers.isTeamsVisible(), "'Teams' (See all teams) bloğu görünür değil.");

@@ -27,7 +27,7 @@ public final class ConfigLoader {
             int implicit = Integer.parseInt(sysOr(p, "implicitWait","5"));
             int explicit = Integer.parseInt(sysOr(p, "explicitWait","15"));
             int plt = Integer.parseInt(sysOr(p, "pageLoadTimeout","30"));
-            int pause = Integer.parseInt(sysOr(p, "debugPauseSec","0"));   // <-- eklendi
+            int pause = Integer.parseInt(sysOr(p, "debugPauseSec","0"));
 
 
             return new Config(baseUrl, browser, headless, implicit, explicit, plt,pause);

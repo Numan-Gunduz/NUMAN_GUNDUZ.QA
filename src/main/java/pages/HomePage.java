@@ -11,7 +11,7 @@ public class HomePage {
     private final WebDriver driver;
     private final WebDriverWait wait;
     private static final String URL = "https://useinsider.com/";
-    private static final By HEADER = By.tagName("header"); // istersen özelleştirebiliriz
+    private static final By HEADER = By.tagName("header");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;

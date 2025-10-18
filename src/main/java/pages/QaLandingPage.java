@@ -30,7 +30,7 @@ public class QaLandingPage extends BasePage {
 
 
         // Sayfa yönlendirmesi tamamlanmadan önce 15 saniye bekle
- sleep(15000);
+        sleep(15000);
         System.out.println("15 saniye dinamik olarak beklendir");
 
         waitFor().until(ExpectedConditions.urlContains("/open-positions"));
